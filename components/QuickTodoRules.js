@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import call from 'react-native-phone-call';
-import Communications from 'react-native-communications'
+import Communications from 'react-native-communications';
+import styles from '../assets/Styles';
+
 
 function contains(propsTitle, value) {
   let title = propsTitle.toLowerCase();
@@ -40,7 +42,6 @@ function _email(){
 
 export function buttonName(title) {
   let button;
-  console.log(title);
 
   if (contains(title, 'appeler')) {
     button = (
@@ -87,8 +88,3 @@ export function buttonName(title) {
   }
   return button;
 }
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-  },
-});

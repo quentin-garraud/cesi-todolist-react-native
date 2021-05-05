@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { CheckBox, Input, Button } from 'react-native-elements';
 import { createTodo } from '../src/api';
+import styles from '../assets/Styles';
+
 
 export default class AddTodoComponent extends React.Component {
   constructor(props) {
@@ -96,10 +98,3 @@ export default class AddTodoComponent extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-    marginRight: 20,
-    marginLeft: 20,
-  },
-});

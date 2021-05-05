@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import { updateTodo, deleteTodo } from '../src/api';
-import QuickTodo from './QuickTodo'
+import QuickTodo from './QuickTodo';
+import styles from '../assets/Styles';
+
 
 export default class TodoComponent extends React.Component {
   constructor(props) {
@@ -85,17 +87,3 @@ export default class TodoComponent extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-  },
-  userid: {
-    opacity: 0.5,
-    paddingTop: 3,
-    paddingBottom: 10,
-  },
-  button: {
-    marginTop: 10,
-  },
-});
