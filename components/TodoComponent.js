@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import { updateTodo, deleteTodo } from '../src/api';
 import QuickTodo from './QuickTodo';
 import styles from '../assets/Styles';
+import { createStackNavigator } from '@react-navigation/stack';
+import DetailTodoComponent from './DetailTodoComponent';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 
 export default class TodoComponent extends React.Component {
@@ -61,28 +65,31 @@ export default class TodoComponent extends React.Component {
     }
 
     return (
+
       <View>
-        <Card>
-          <Text style={styles.title}>{this.props.todo.title}</Text>
-          <Text style={styles.userid}>
-            Tâche n°{this.props.todo.id} | Utilisateur n°
-            {this.props.todo.userId}
-          </Text>
-          <Text style={styles.status}>{status}</Text>
-          <QuickTodo title={this.props.todo.title} />
-          {button}
-          <Button
-            style={styles.button}
-            onPress={() => this._deleteTodo()}
-            title="Supprimer"
-            icon={{
-              name: 'remove-circle',
-              size: 15,
-              color: 'white',
-            }}
-            buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
-          />
-        </Card>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailsTodo', {id: this.props.todo.id})}>
+          <Card pointerEvents="none">
+            <Text style={styles.title}>{this.props.todo.title}</Text>
+            <Text style={styles.userid}>
+              Tâche n°{this.props.todo.id} | Utilisateur n°
+              {this.props.todo.userId}
+            </Text>
+            <Text style={styles.status}>{status}</Text>
+            <QuickTodo title={this.props.todo.title} />
+            {button}
+            <Button
+              style={styles.button}
+              onPress={() => this._deleteTodo()}
+              title="Supprimer"
+              icon={{
+                name: 'remove-circle',
+                size: 15,
+                color: 'white',
+              }}
+              buttonStyle={{ backgroundColor: 'red', borderRadius: 10 }}
+            />
+          </Card>
+        </TouchableOpacity>
       </View>
     );
   }

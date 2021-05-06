@@ -23,9 +23,13 @@ export default StyleSheet.create({
     padding: 5,
   },
   mapContainer: {
-   height: 400,
-   width: 400,
- },
+    height: 400,
+    width: 400,
+  },
+  textCenter: {
+    textAlign: "center",
+  },
+
 
   lightTheme: {
     backgroundColor: '#F5F5F5',

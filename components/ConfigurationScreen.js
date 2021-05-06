@@ -3,12 +3,12 @@ import { View, Text, Button, StyleSheet, Image } from 'react-native';
 import { Switch, Input } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../assets/Styles';
-import ImagePicker from 'react-native-image-picker'
+import ImagePicker from 'react-native-image-picker';
 
 export default class Configuration extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pseudo: '', darkMode: false, fontSize: '', photo: null, };
+    this.state = { pseudo: '', darkMode: false, fontSize: '', photo: null };
   }
 
   componentDidMount() {
@@ -30,11 +30,13 @@ export default class Configuration extends React.Component {
     try {
       let jsonValue = await AsyncStorage.getItem('configuration');
       let value = JSON.parse(jsonValue);
-      this.setState({
-        pseudo: value.pseudo,
-        fontSize: value.fontSize,
-        darkMode: value.darkMode,
-      });
+      if (value != null) {
+        this.setState({
+          pseudo: value.pseudo,
+          fontSize: value.fontSize,
+          darkMode: value.darkMode,
+        });
+      }
     } catch (e) {
       console.log(e);
     }
@@ -90,7 +92,7 @@ export default class Configuration extends React.Component {
           />
         </View>
         <Button title="Sauvegarder" onPress={() => this.storeData()} />
-        <Image source={require("../assets/snack-icon.png")} />
+        <Image source={require('../assets/snack-icon.png')} />
       </View>
     );
   }

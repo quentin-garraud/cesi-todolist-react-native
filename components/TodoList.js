@@ -25,7 +25,7 @@ export default class TodoList extends React.Component {
     });
   }
 
-  templateTodo = ({ item }) => <TodoComponent todo={item} />;
+  templateTodo = ({ item }) => <TodoComponent navigation={this.props.navigation} todo={item} />;
 
   updateSearch = (search) => {
     this.setState({ search });
@@ -35,7 +35,9 @@ export default class TodoList extends React.Component {
     try {
       let jsonValue = await AsyncStorage.getItem('configuration');
       let value = JSON.parse(jsonValue);
-      this.setState({ pseudo: value.pseudo, darkMode: value.darkMode, });
+      if (value != null) {
+        this.setState({ pseudo: value.pseudo, darkMode: value.darkMode });
+      }
     } catch (e) {
       console.log(e);
     }
@@ -51,9 +53,21 @@ export default class TodoList extends React.Component {
           onChangeText={this.updateSearch}
           value={search}
         />
-        <Text style={[styles.title, darkMode ? styles.darkThemeText : styles.lightThemeText]}>Bonjour {pseudo} !</Text>
+        <Text
+          style={[
+            styles.title,
+            darkMode ? styles.darkThemeText : styles.lightThemeText,
+          ]}>
+          Bonjour {pseudo} !
+        </Text>
         <AddTodoComponent />
-        <Text style={[styles.title, darkMode ? styles.darkThemeText : styles.lightThemeText]}>Liste des todos en cours</Text>
+        <Text
+          style={[
+            styles.title,
+            darkMode ? styles.darkThemeText : styles.lightThemeText,
+          ]}>
+          Liste des todos en cours
+        </Text>
         <FlatList
           data={this.state.todos
             .filter((todo) => todo.completed === false)
@@ -61,7 +75,13 @@ export default class TodoList extends React.Component {
           renderItem={this.templateTodo}
         />
         <Divider style={styles.divider} />
-        <Text style={[styles.title, darkMode ? styles.darkThemeText : styles.lightThemeText]}>Liste des todos terminés</Text>
+        <Text
+          style={[
+            styles.title,
+            darkMode ? styles.darkThemeText : styles.lightThemeText,
+          ]}>
+          Liste des todos terminés
+        </Text>
         <FlatList
           data={this.state.todos
             .filter((todo) => todo.completed === true)

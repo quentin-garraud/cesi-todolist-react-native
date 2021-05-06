@@ -1,5 +1,5 @@
 export function getTodosFromApi() {
-  return fetch('https://cesi-todo.getsandbox.com/todos', {
+  return fetch('https://jsonplaceholder.typicode.com/todos/', {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
@@ -42,6 +42,12 @@ export function deleteTodo(id) {
   return fetch('https://jsonplaceholder.typicode.com/todos/' + id, {
     method: 'DELETE',
   })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function getOneTodoById(id) {
+  return fetch('https://jsonplaceholder.typicode.com/todos/' + id)
     .then((response) => response.json())
     .catch((error) => console.log(error));
 }
